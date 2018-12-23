@@ -1,0 +1,36 @@
+% play the towers of Hanoi
+:- use_module(library(js)).
+%takehere
+moveac(A,_,C,1):- apply(plcb, [A,C], Value).
+moveac(A,B,C,N):- succ(M,N), 
+				  moveac(A,C,B,M), moveac(A,_,C,1), moveac(B,A,C,M).
+%takeend
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

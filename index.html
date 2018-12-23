@@ -8,6 +8,8 @@
         body {
             margin: 60px auto;
             width: 70%;
+            height: 100%;
+            /*text-align: center;*/
         }
 
         .navbar {
@@ -16,6 +18,7 @@
             width: 100%;
             position: fixed;
             background-color: #333;
+            z-index: 999;
         }
 
         .navbarenum {
@@ -36,12 +39,62 @@
                 position: relative;
             }
 
+        .topic:target::before {
+            content: "";
+            display: block;
+            height: 40px; /* fixed header height*/
+            margin: -40px 0 0; /* negative fixed header height */
+        }
+        .container {
+            margin: auto;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            min-height: 10vh;
+        }
+        #plbanner {
+            background-image: url("spacepattern.jpg");
+            background-size: contain;
+            border-radius: 15px;
+        }
+        #prolog_out {
+            margin: 10px auto;
+            width: 95%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.50);
+            border: 10px solid transparent;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: white;
+            overflow: auto;
+            white-space: nowrap;
+            font-family: 'consolas';
+        }
+        #prolog_view {
+            margin: 10px auto;
+            width: 95%;
+            border: 1px solid white;
+            border-radius: 15px;
+            box-sizing: border-box;
+
+            display: block;
+        }
+
+        #anim_container {
+            background: LightGray;
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+
         .grid {
+            margin: auto;
+            width: 100%;
+            max-width: 1000px;
             display: flex;
             flex-flow: column wrap;
             align-content: space-around;
-            max-width: 100%;
-            /*background-color: gray;*/
         }
 
         .gallery {
@@ -65,18 +118,13 @@
             text-align: center;
             font-size: 20px;
         }
-
-        #anim_container {
-            width: 800px;
-            height: 400px;
-            position: relative;
-            background: LightGray;
-            border: 1px solid black;
-        }
-
     </style>
+    <script src="/layout.js"></script>
     <script src="/animation.js"></script>
+    <script src="/tau-prolog.js"></script>
+
 </head>
+
 <body>
     <div class="navbar">
         <div class="navbarenum">
@@ -86,20 +134,54 @@
         </div>
     </div>
 
+    <!-- Intro -->
     <div class="container">
-        <h1>Hi there, I#m  Simon!</h1>
+        <h1>Hi there, I'm  Simon!</h1>
         <p>
             I'm a physics student in Cologne, Germany. I like programming and the mindset that it requires.
             <a href="/about">Read more about my life...</a>
         </p>
     </div>
 
-   
-    <canvas id="anim_container" width="800" height="400" onmouseenter="continueAni()" onmouseleave="pauseAni()">
-        
-    </canvas>
+    <!-- Prolog -->
+    <div class="container" id="plbanner">
+        <iframe id="frdummy" src="/test.txt" style="display: none;"></iframe>
+        <div>
+            <div id="prolog_out"></div>
+            <canvas id="prolog_view" width="400" height="200" onmousedown="startPL()"></canvas>
+        </div>
+    </div>
 
-    <div id="programming">
+    <!-- Fourier-Animation -->
+    <canvas class="container" id="anim_container" width="800" height="400" onmouseenter="continueAni()" onmouseleave="pauseAni()"></canvas>
+
+    <!-- Rätzel -->
+    <div class="container">
+        <p align="justify">
+            After a group of Knights and Knaves set up their tents, Thomas (the best cook among them) started
+            cooking at the campfire while all the others settle in a circle around the fire,
+            watching him.
+            He noticed that everyone in the circle seemed to know the two people next to him.
+            Thomas did not know anyone except his good friend Richard.
+            To get to know the round a little more he asked a person in the circle, "You and the two,
+            who sit next to you: is there an odd number of knaves in this small set?"
+            The person answered. Thomas asked another randomly chosen person and received the same
+            answer. Whoever he asked, he kept getting this answer. Finally, after he had
+            asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
+            Thomas paused for a moment and then asked Richard, "Are you sitting between two knights?", whereupon
+            Richard replied his answer.
+        </p>
+        <p>
+            Let n be the number of people present. How many are Knights resp. Knaves, and
+            what are Thomas and Richard?
+        </p>
+        <p style="font-size: small; color:gray;">
+            (Author: Nick Reed, Southampton, England.)
+        </p>
+    </div>
+
+    <!-- Gallerie -->
+    <div id="programming" class="topic">
         <div class="grid" id="mygrid">
             <div class="gallery">
                 <a href="/reflection.png">
@@ -110,7 +192,7 @@
                 </div>
             </div>
             <div class="gallery">
-                <a href="/reflection.png">
+                <a href="/strainPlot.png">
                     <img src="/strainPlot.png" alt="strainPlot">
                 </a>
                 <div class="desc">
@@ -118,7 +200,7 @@
                 </div>
             </div>
             <div class="gallery">
-                <a href="/reflection.png">
+                <a href="/germanyKDT.png">
                     <img src="/germanyKDT.png" alt="germanyKDT">
                 </a>
                 <div class="desc">
@@ -126,14 +208,13 @@
                 </div>
             </div>
             <div class="gallery">
-                <a href="/reflection.png">
+                <a href="/magnetpendel_0.010000_0.010000_1024_pastell.png">
                     <img src="/magnetpendel_0.010000_0.010000_1024_pastell.png" alt="magnetpendel">
                 </a>
                 <div class="desc">
                     Magnetic pendulum
                 </div>
             </div>
-
 
             <div class="gallery">
                 <img src="usertile36.bmp">
@@ -153,10 +234,12 @@
             </div>
 
         </div>
-        <script src="/layout.js"></script>
+        <script type="text/javascript">
+            orderGallery();
+        </script>
     </div>
 
-    <div id="physics">
+    <div id="physics" class="topic">
         <iframe src="/notes.pdf" style="width:100%; height:1000px;"></iframe>
     </div>
 
