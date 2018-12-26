@@ -5,7 +5,10 @@
     <!-- link to main stylesheet -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <style>
-        body {
+        body{
+            margin: 0;
+        }
+        #wrapper {
             margin: 60px auto;
             width: 70%;
             height: 100%;
@@ -50,43 +53,74 @@
             width: 100%;
             max-width: 1000px;
             margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
+            display: block;
             min-height: 10vh;
+            overflow: auto; /*prevent child margins from collapsing*/
         }
         #plbanner {
-            background-image: url("spacepattern.jpg");
-            background-size: contain;
+            background-image: url("spacepattern4.png");
+            background-size: 250px;
             border-radius: 15px;
         }
         #prolog_out {
-            margin: 10px auto;
+            margin: 15px auto;
             width: 95%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.50);
-            border: 10px solid transparent;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(183, 180, 145, 0.2);
             border-radius: 15px;
             box-sizing: border-box;
             color: white;
             overflow: auto;
-            white-space: nowrap;
+            white-space: pre;
+            tab-size: 4;
             font-family: 'consolas';
+            cursor: pointer;
         }
+            #prolog_out:active {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
         #prolog_view {
-            margin: 10px auto;
+            margin: 0px auto 15px;
             width: 95%;
-            border: 1px solid white;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(183, 180, 145, 0.2);
             border-radius: 15px;
-            box-sizing: border-box;
-
+            /*box-sizing: border-box;*/
             display: block;
         }
 
         #anim_container {
-            background: LightGray;
+            background-image: url("background2.png");
+            background-color: rgb(27, 88, 72);
+            background-blend-mode: multiply;
             border: 1px solid black;
             border-radius: 15px;
+            overflow: hidden;
         }
+        #anim_canvas {
+            margin: 0;
+            width: 100%;
+            display: block;
+        }
+        .btngroup {
+            display: flex;
+            flex-direction: row;
+            justify-content:space-between;
+        }
+            .btngroup button {
+                height: 30px;
+                flex-grow: 1;
+                color: white;
+                background-color: rgba(76, 172, 25, 0.1);
+                border: none;
+                border-top: 1px solid green;
+                border-right: 1px solid green;
+                box-sizing: border-box;
+                cursor: pointer;
+            }
+
 
         .grid {
             margin: auto;
@@ -102,10 +136,11 @@
             padding: 1px;
             border: 1px solid #ccc;
             margin: 10px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
         }
-
             .gallery:hover {
                 border: 1px solid #777;
+                box-shadow: none;
             }
 
             .gallery img {
@@ -118,6 +153,60 @@
             text-align: center;
             font-size: 20px;
         }
+
+        .pdflink {
+            width: 250px;
+            height: 140px;
+            border: 1px solid #ccc;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+            text-align: center;
+            line-height: 50px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("blackboard.jpg");
+            background-color: white;
+            background-blend-mode: multiply;
+            background-size: cover;
+            color: beige;
+            font-size: 26px;
+            transition: background-color 0.5s;
+        }
+            .pdflink:hover {
+                background-color: slategray;
+            }
+        .weblink {
+            width: 250px;
+            height: 140px;
+            border: 1px solid #ccc;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+            text-align: center;
+            line-height: 50px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("background2.png");
+            background-color: rgb(66, 47, 29);
+            background-blend-mode: multiply;
+            background-size: cover;
+            color: beige;
+            font-size: 26px;
+            transition: background-color 0.5s;
+        }
+
+            .weblink:hover {
+                background-color: rgb(46, 46, 46);
+            }
+        
+        #footer {
+            position: relative;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            height: 80px;
+            margin: 0px;
+            margin-top: 20px;
+            background-image: url(aztecpattern2.jpg);
+            background-size: contain;
+        }
     </style>
     <script src="/layout.js"></script>
     <script src="/animation.js"></script>
@@ -126,130 +215,141 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="navbarenum">
-            <a href="#programming">Programming</a>
-            <a href="#physics">Physics</a>
-            <a href="#geocaching">Geocaching</a>
+    <div id="wrapper">
+        <!-- Navigationsleiste -->
+        <div class="navbar">
+            <div class="navbarenum">
+                <a href="#programming">Programming</a>
+                <a href="#physics">Physics</a>
+                <a href="#geocaching">Geocaching</a>
+            </div>
         </div>
-    </div>
 
-    <!-- Intro -->
-    <div class="container">
-        <h1>Hi there, I'm  Simon!</h1>
-        <p>
-            I'm a physics student in Cologne, Germany. I like programming and the mindset that it requires.
-            <a href="/about">Read more about my life...</a>
-        </p>
-    </div>
-
-    <!-- Prolog -->
-    <div class="container" id="plbanner">
-        <iframe id="frdummy" src="/test.txt" style="display: none;"></iframe>
-        <div>
-            <div id="prolog_out"></div>
-            <canvas id="prolog_view" width="400" height="200" onmousedown="startPL()"></canvas>
+        <!-- Intro -->
+        <div class="container">
+            <h1>Hi there, I'm  Simon!</h1>
+            <p>
+                I'm a physics student in Cologne, Germany. I like programming and the mindset that it requires.
+                <a href="/about">Read more about my life...</a>
+            </p>
         </div>
-    </div>
 
-    <!-- Fourier-Animation -->
-    <canvas class="container" id="anim_container" width="800" height="400" onmouseenter="continueAni()" onmouseleave="pauseAni()"></canvas>
+        <!-- Prolog -->
+        <div class="container" id="plbanner">
+            <iframe id="frdummy" src="/test.txt" style="display: none;" onload="loadplcode()"></iframe>
+            <div>
+                <div id="prolog_out" onmouseup="startPL()"></div>
+                <canvas id="prolog_view" width="2" height="1" onmousedown="pauseContinueTowers()"></canvas>
+            </div>
+        </div>
 
-    <!-- Rätzel -->
-    <div class="container">
-        <p align="justify">
-            After a group of Knights and Knaves set up their tents, Thomas (the best cook among them) started
-            cooking at the campfire while all the others settle in a circle around the fire,
-            watching him.
-            He noticed that everyone in the circle seemed to know the two people next to him.
-            Thomas did not know anyone except his good friend Richard.
-            To get to know the round a little more he asked a person in the circle, "You and the two,
-            who sit next to you: is there an odd number of knaves in this small set?"
-            The person answered. Thomas asked another randomly chosen person and received the same
-            answer. Whoever he asked, he kept getting this answer. Finally, after he had
-            asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
-            Thomas paused for a moment and then asked Richard, "Are you sitting between two knights?", whereupon
-            Richard replied his answer.
-        </p>
-        <p>
-            Let n be the number of people present. How many are Knights resp. Knaves, and
-            what are Thomas and Richard?
-        </p>
-        <p style="font-size: small; color:gray;">
-            (Author: Nick Reed, Southampton, England.)
-        </p>
-    </div>
+        <!-- Fourier-Animation -->
+        <div class="container" id="anim_container">
+            <canvas id="anim_canvas" width="800" height="400" onmouseenter="continueAni()" onmouseleave="pauseAni()"></canvas>
+            <div class="btngroup">
+                <button onmousedown="changeMode(0)">Rectangle</button>
+                <button onmousedown="changeMode(1)">Sawtooth</button>
+                <button onmousedown="changeMode(2)">Doublestep</button>
+            </div>
+        </div>
 
-    <!-- Gallerie -->
-    <div id="programming" class="topic">
-        <div class="grid" id="mygrid">
-            <div class="gallery">
-                <a href="/reflection.png">
-                    <img src="/reflection.png" alt="reflection">
-                </a>
-                <div class="desc">
-                    Reflection
+        <!-- Rätzel -->
+        <div class="container">
+            <p align="justify">
+                After a group of Knights and Knaves set up their tents, Thomas (the best cook among them) started
+                cooking at the campfire while all the others settle in a circle around the fire,
+                watching him.
+                He noticed that everyone in the circle seemed to know the two people next to him.
+                Thomas did not know anyone except his good friend Richard.
+                To get to know the round a little more he asked a person in the circle, "You and the two,
+                who sit next to you: is there an odd number of knaves in this small set?"
+                The person answered. Thomas asked another randomly chosen person and received the same
+                answer. Whoever he asked, he kept getting this answer. Finally, after he had
+                asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
+                Thomas paused for a moment and then asked Richard, "Are you sitting between two knights?", whereupon
+                Richard replied his answer.
+            </p>
+            <p>
+                Let <em>n</em> be the number of people present. How many are Knights resp. Knaves, and
+                what are Thomas and Richard?
+            </p>
+            <p style="font-size: small; color:gray;">
+                (Author: Nick Reed, Southampton, England.)
+            </p>
+        </div>
+
+        <!-- Gallerie -->
+        <div id="programming" class="topic">
+            <div class="grid" id="mygrid">
+                <div class="gallery">
+                    <a href="/reflection.png">
+                        <img src="/reflection.png" alt="reflection">
+                    </a>
+                    <div class="desc">
+                        Reflection
+                    </div>
                 </div>
-            </div>
-            <div class="gallery">
-                <a href="/strainPlot.png">
-                    <img src="/strainPlot.png" alt="strainPlot">
-                </a>
-                <div class="desc">
-                    Cell evolution
+                <div class="gallery">
+                    <a href="/strainPlot.png">
+                        <img src="/strainPlot.png" alt="strainPlot">
+                    </a>
+                    <div class="desc">
+                        Cell evolution
+                    </div>
                 </div>
-            </div>
-            <div class="gallery">
-                <a href="/germanyKDT.png">
-                    <img src="/germanyKDT.png" alt="germanyKDT">
-                </a>
-                <div class="desc">
-                    KD-Tree
+                <div class="gallery">
+                    <a href="/germanyKDT.png">
+                        <img src="/germanyKDT.png" alt="germanyKDT">
+                    </a>
+                    <div class="desc">
+                        KD-Tree
+                    </div>
                 </div>
-            </div>
-            <div class="gallery">
-                <a href="/magnetpendel_0.010000_0.010000_1024_pastell.png">
-                    <img src="/magnetpendel_0.010000_0.010000_1024_pastell.png" alt="magnetpendel">
-                </a>
-                <div class="desc">
-                    Magnetic pendulum
+                <div class="gallery">
+                    <a href="/magnetpendel_0.010000_0.010000_1024_pastell.png">
+                        <img src="/magnetpendel_0.010000_0.010000_1024_pastell.png" alt="magnetpendel">
+                    </a>
+                    <div class="desc">
+                        Magnetic pendulum
+                    </div>
                 </div>
-            </div>
 
-            <div class="gallery">
-                <img src="usertile36.bmp">
-                <div class="desc">usertile36</div>
-            </div>
-            <div class="gallery">
-                <img src="usertile37.bmp">
-                <div class="desc">usertile36</div>
-            </div>
-            <div class="gallery">
-                <img src="usertile38.bmp">
-                <div class="desc">usertile36</div>
-            </div>
-            <div class="gallery">
-                <img src="usertile39.bmp">
-                <div class="desc">usertile36</div>
-            </div>
+                <div class="gallery">
+                    <img src="usertile36.bmp">
+                    <div class="desc">usertile36</div>
+                </div>
+                <div class="gallery">
+                    <img src="usertile37.bmp">
+                    <div class="desc">usertile36</div>
+                </div>
+                <div class="gallery">
+                    <img src="usertile38.bmp">
+                    <div class="desc">usertile36</div>
+                </div>
+                <div class="gallery">
+                    <img src="usertile39.bmp">
+                    <div class="desc">usertile36</div>
+                </div>
 
+            </div>
         </div>
         <script type="text/javascript">
             orderGallery();
+            firstFrame();
         </script>
+
+        <!--Vorlesungen und Links-->
+        <div class="container">
+            <a class="pdflink" href="/notes.pdf">Theory of Relativity <br> <small>Lecture notes</small></a>
+            <a class="weblink" href="https://www.metalevel.at/prolog">Prolog  <br> <small>Tutorial</small></a>
+        </div>
+
+        <!--http://www.swi-prolog.org/pldoc/man?section=clpfd-->
+
     </div>
-
-    <div id="physics" class="topic">
-        <iframe src="/notes.pdf" style="width:100%; height:1000px;"></iframe>
-    </div>
-
-
-    <footer>
+    <footer id="footer">
         <ul>
-            <!--
-            <li><a href="mailto:hankquinlanhub@gmail.com">email</a></li>
-                <li><a href="https://github.com/hankquinlan">github.com/hankquinlan</a></li>
-            -->
+
         </ul>
     </footer>
 </body>
