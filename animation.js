@@ -123,7 +123,8 @@ function plframe() {
     let h = w / 2;
     canvas.setAttribute("width", Math.floor(w));
     canvas.setAttribute("height", h);
-    
+
+    let scale = w / 400;
 
     //canvas.setAttribute("width", "300");
     //canvas.setAttribute("height", "100");
@@ -157,13 +158,13 @@ function plframe() {
         var cx = w / 6 + i*w/3;
         ctx.beginPath();
         ctx.moveTo(Math.floor(cx)+0.5, h - 20);
-        ctx.lineTo(Math.floor(cx)+0.5, h - 80);
+        ctx.lineTo(Math.floor(cx) + 0.5, h - 15*numblocks*scale);
         ctx.stroke();
         for (var j = 0; j < towers[i].length; j++) {
             var s = towers[i][j];
-            var cy = h - 30 - j * 15;
+            var cy = h - 20 - 5*scale - j * 15*scale;
             ctx.beginPath();
-            ctx.rect(cx - 8*s, cy - 5, 16*s, 10);
+            ctx.rect(cx - 8*s*scale, cy - 5*scale, 16*s*scale, 10*scale);
             ctx.fill();
         }
     }

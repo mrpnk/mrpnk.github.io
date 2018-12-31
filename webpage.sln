@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "mrpnk.github.io", "D:\Simon\Dokumente\Entwicklung\mrpnk.github.io\", "{E9A42AE6-4B75-4A5E-BD7C-B9C586462E21}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "mrpnk.github.io", "C:\Users\Simon\Documents\Entwicklung\Webpage\", "{E9A42AE6-4B75-4A5E-BD7C-B9C586462E21}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_57341"
-		Debug.AspNetCompiler.PhysicalPath = "D:\Simon\Dokumente\Entwicklung\mrpnk.github.io\"
+		Debug.AspNetCompiler.PhysicalPath = "C:\Users\Simon\Documents\Entwicklung\Webpage\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57341\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_57341"
-		Release.AspNetCompiler.PhysicalPath = "D:\Simon\Dokumente\Entwicklung\mrpnk.github.io\"
+		Release.AspNetCompiler.PhysicalPath = "C:\Users\Simon\Documents\Entwicklung\Webpage\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57341\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "57341"
-		SlnRelativePath = "D:\Simon\Dokumente\Entwicklung\mrpnk.github.io\"
+		SlnRelativePath = "C:\Users\Simon\Documents\Entwicklung\Webpage\"
 	EndProjectSection
 EndProject
 Global

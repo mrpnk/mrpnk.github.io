@@ -15,8 +15,9 @@ function getAbsoluteWidth(el) {
     return Math.ceil(el.offsetWidth+ margin);
 }
 
-const myObserver = new ResizeObserver(entries => {
-    var container = document.getElementById('mygrid');
+function layoutGallery()
+{
+    var container = document.getElementById('gallery');
     var a = container.offsetWidth;
     var b = getAbsoluteWidth(container.children[0]);
 
@@ -33,12 +34,13 @@ const myObserver = new ResizeObserver(entries => {
     }
     var highest = Math.max.apply(Math, col_heights);
     container.style.height = (highest + 5) + 'px';
-});
+}
+const myObserver = new ResizeObserver(layoutGallery);
 
-function orderGallery()
+function onloadGallery()
 {
     console.log("orderGallery");
     
-    myObserver.observe(document.getElementById('mygrid'));
+    myObserver.observe(document.getElementById('gallery'));
 }
 
