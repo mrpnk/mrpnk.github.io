@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simon - Prolog</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <style>
+
+    </style>
+
+    <script src="/layout.js"></script>
+    <script src="/animation.js"></script>
+    <script src="/tau-prolog.js"></script>
+    <script src="/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Navigationsleiste -->
+        <div class="navbar">
+            <script>
+                $(".navbar").load("navbar.html");
+            </script>
+        </div>
+
+        <!-- Prolog -->
+        <div class="container" id="plbanner">
+            <iframe id="frdummy" src="/test.txt" style="display: none;" onload="loadplcode()"></iframe>
+            <div>
+                <div id="prolog_out" onmouseup="startPL()"></div>
+                <canvas id="prolog_view" width="2" height="1" onmousedown="pauseContinueTowers()"></canvas>
+            </div>
+        </div>
+
+        <!--Vorlesungen und Links-->
+        <div class="container">
+            <a class="pdflink" href="/notes.pdf">Theory of Relativity <br> <small>Lecture notes</small></a>
+            <a class="weblink" href="https://www.metalevel.at/prolog">Prolog  <br> <small>Tutorial</small></a>
+        </div>
+
+        <!--http://www.swi-prolog.org/pldoc/man?section=clpfd-->
+
+    </div>
+    <footer id="footer">
+        <ul>
+
+        </ul>
+    </footer>
+</body>
+</html>

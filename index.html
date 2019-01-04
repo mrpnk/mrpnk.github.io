@@ -2,245 +2,33 @@
 <html>
 <head>
     <title>Simon</title>
-    <!-- link to main stylesheet -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <style>
-        body{
-            margin: 0;
-        }
-        #wrapper {
-            margin: 60px auto;
-            width: 70%;
-            height: 100%;
-            /*text-align: center;*/
-        }
 
-        .navbar {
-            top: 0;
-            left: 0;
-            width: 100%;
-            position: fixed;
-            background-color: #333;
-            z-index: 999;
-        }
-
-        .navbarenum {
-            position: relative;
-            top: 0;
-            left: 15%;
-            font-weight: bold;
-            font-family: "Helvetica";
-            display: flex;
-            flex-flow: row nowrap;
-            align-content: flex-start;
-        }
-
-            .navbarenum a {
-                display: block;
-                color: #f2f2f2;
-                padding: 14px 16px;
-                position: relative;
-            }
-
-        .topic:target::before {
-            content: "";
-            display: block;
-            height: 40px; /* fixed header height*/
-            margin: -40px 0 0; /* negative fixed header height */
-        }
-        .container {
-            margin: auto;
-            width: 100%;
-            max-width: 1000px;
-            margin-bottom: 10px;
-            display: block;
-            min-height: 10vh;
-            overflow: auto; /*prevent child margins from collapsing*/
-        }
-        #plbanner {
-            background-image: url("spacepattern4.png");
-            background-size: 250px;
-            border-radius: 15px;
-        }
-        #prolog_out {
-            margin: 15px auto;
-            width: 95%;
-            height: 100%;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(183, 180, 145, 0.2);
-            border-radius: 15px;
-            box-sizing: border-box;
-            color: white;
-            overflow: auto;
-            white-space: pre;
-            tab-size: 4;
-            font-family: 'consolas';
-            cursor: pointer;
-        }
-            #prolog_out:active {
-                background-color: rgba(255, 255, 255, 0.3);
-            }
-        #prolog_view {
-            margin: 0px auto 15px;
-            width: 95%;
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(183, 180, 145, 0.2);
-            border-radius: 15px;
-            /*box-sizing: border-box;*/
-            display: block;
-        }
-
-        #anim_container {
-            background-image: url("background2.png");
-            background-color: rgb(27, 88, 72);
-            background-blend-mode: multiply;
-            border: 1px solid black;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        #anim_canvas {
-            margin: 0;
-            width: 100%;
-            display: block;
-        }
-        .btngroup {
-            display: flex;
-            flex-direction: row;
-            justify-content:space-between;
-        }
-            .btngroup button {
-                height: 30px;
-                flex-grow: 1;
-                color: white;
-                background-color: rgba(76, 172, 25, 0.1);
-                border: none;
-                border-top: 1px solid green;
-                border-right: 1px solid green;
-                box-sizing: border-box;
-                cursor: pointer;
-            }
-
-
-        .grid {
-            margin: auto;
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            flex-flow: column wrap;
-            align-content: space-around;
-        }
-
-        .galleryItem {
-            width: 300px;
-            padding: 1px;
-            border: 1px solid #ccc;
-            margin: 10px;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
-        }
-            .galleryItem:hover {
-                border: 1px solid #777;
-                box-shadow: none;
-            }
-
-            .galleryItem img {
-                width: 100%;
-                height: auto;
-            }
-
-        .desc {
-            padding: 10px;
-            text-align: center;
-            font-size: 20px;
-        }
-
-        .pdflink {
-            width: 250px;
-            height: 140px;
-            border: 1px solid #ccc;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
-            text-align: center;
-            line-height: 50px;
-            display: inline-block;
-            vertical-align: middle;
-            background-image: url("blackboard.jpg");
-            background-color: white;
-            background-blend-mode: multiply;
-            background-size: cover;
-            color: beige;
-            font-size: 26px;
-            transition: background-color 0.5s;
-        }
-            .pdflink:hover {
-                background-color: slategray;
-            }
-        .weblink {
-            width: 250px;
-            height: 140px;
-            border: 1px solid #ccc;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
-            text-align: center;
-            line-height: 50px;
-            display: inline-block;
-            vertical-align: middle;
-            background-image: url("background2.png");
-            background-color: rgb(66, 47, 29);
-            background-blend-mode: multiply;
-            background-size: cover;
-            color: beige;
-            font-size: 26px;
-            transition: background-color 0.5s;
-        }
-
-            .weblink:hover {
-                background-color: rgb(46, 46, 46);
-            }
-        
-        #footer {
-            position: relative;
-            bottom: 0px;
-            left: 0px;
-            width: 100%;
-            height: 80px;
-            margin: 0px;
-            margin-top: 20px;
-            background-image: url(aztecpattern2.jpg);
-            background-size: contain;
-        }
     </style>
+
     <script src="/layout.js"></script>
     <script src="/animation.js"></script>
     <script src="/tau-prolog.js"></script>
-
+    <script src="/jquery-3.3.1.js"></script>
 </head>
 
 <body>
     <div id="wrapper">
         <!-- Navigationsleiste -->
         <div class="navbar">
-            <div class="navbarenum">
-                <a href="#programming">Programming</a>
-                <a href="#physics">Physics</a>
-                <a href="#geocaching">Geocaching</a>
-            </div>
+            <script>
+                $(".navbar").load("navbar.html");
+            </script>
         </div>
 
         <!-- Intro -->
         <div class="container">
-            <h1>Hi there, I'm  Simon!</h1>
+            <h1>Welcome. I'm  Simon.</h1>
             <p>
                 I'm a physics student in Cologne, Germany. I like programming and the mindset that it requires.
                 <a href="/about">Read more about my life...</a>
             </p>
-        </div>
-
-        <!-- Prolog -->
-        <div class="container" id="plbanner">
-            <iframe id="frdummy" src="/test.txt" style="display: none;" onload="loadplcode()"></iframe>
-            <div>
-                <div id="prolog_out" onmouseup="startPL()"></div>
-                <canvas id="prolog_view" width="2" height="1" onmousedown="pauseContinueTowers()"></canvas>
-            </div>
         </div>
 
         <!-- Fourier-Animation -->
@@ -253,89 +41,73 @@
             </div>
         </div>
 
-        <!-- Rätzel -->
-        <div class="container">
-            <p align="justify">
-                After a group of Knights and Knaves set up their tents, Thomas (the best cook among them) started
-                cooking at the campfire while all the others settle in a circle around the fire,
-                watching him.
-                He noticed that everyone in the circle seemed to know the two people next to him.
-                Thomas did not know anyone except his good friend Richard.
-                To get to know the round a little more he asked a person in the circle, "You and the two,
-                who sit next to you: is there an odd number of knaves in this small set?"
-                The person answered. Thomas asked another randomly chosen person and received the same
-                answer. Whoever he asked, he kept getting this answer. Finally, after he had
-                asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
-                Thomas paused for a moment and then asked Richard, "Are you sitting between two knights?", whereupon
-                Richard replied his answer.
-            </p>
-            <p>
-                Let <em>n</em> be the number of people present. How many are Knights resp. Knaves, and
-                what are Thomas and Richard?
-            </p>
-            <p style="font-size: small; color:gray;">
-                (Author: Nick Reed, Southampton, England.)
-            </p>
-        </div>
-
         <!-- Gallerie -->
         <div id="programming" class="topic">
-            <div class="grid" id="gallery">
+            <div id="gallery">
                 <div class="galleryItem">
-                    <a href="/reflection.png">
-                        <img src="/reflection.png" alt="reflection">
-                    </a>
+                    <div class="preview">
+                        <a href="/prolog_page.html">
+                            <img src="/plcode.png" alt="plcode">
+                        </a>
+                    </div>
+                    <div class="desc">
+                        Prolog
+                    </div>
+                </div>
+                <div class="galleryItem">
+                    <div class="preview">
+                        <a href="/riddle_page.html">
+                            <img src="/riddles.png" alt="riddles">
+                        </a>
+                    </div>
+                    <div class="desc">
+                        Knights and Knaves
+                    </div>
+                </div>
+                <div class="galleryItem">
+                    <div class="preview">
+                        <a href="/reflection.png">
+                            <img src="/reflection.png" alt="reflection">
+                        </a>
+                    </div>
                     <div class="desc">
                         Reflection
                     </div>
                 </div>
                 <div class="galleryItem">
-                    <a href="/strainPlot.png">
-                        <img src="/strainPlot.png" alt="strainPlot">
-                    </a>
+                    <div class="preview">
+                        <a href="/strainPlot.png">
+                            <img src="/strainPlot.png" alt="strainPlot">
+                        </a>
+                    </div>
                     <div class="desc">
                         Cell evolution
                     </div>
                 </div>
                 <div class="galleryItem">
-                    <a href="/germanyKDT.png">
-                        <img src="/germanyKDT.png" alt="germanyKDT">
-                    </a>
+                    <div class="preview">
+                        <a href="/germanyKDT.png">
+                            <img src="/germanyKDT.png" alt="germanyKDT">
+                        </a>
+                    </div>
                     <div class="desc">
                         KD-Tree
                     </div>
                 </div>
                 <div class="galleryItem">
-                    <a href="/magnetpendel_0.010000_0.010000_1024_pastell.png">
-                        <img src="/magnetpendel_0.010000_0.010000_1024_pastell.png" alt="magnetpendel">
-                    </a>
+                    <div class="preview">
+                        <a href="/magnetpendel_0.010000_0.010000_1024_pastell.png">
+                            <img src="/magnetpendel_0.010000_0.010000_1024_pastell.png" alt="magnetpendel">
+                        </a>
+                    </div>
                     <div class="desc">
                         Magnetic pendulum
                     </div>
                 </div>
-
-                <div class="galleryItem">
-                    <img src="usertile36.bmp">
-                    <div class="desc">usertile36</div>
-                </div>
-                <div class="galleryItem">
-                    <img src="usertile37.bmp">
-                    <div class="desc">usertile36</div>
-                </div>
-                <div class="galleryItem">
-                    <img src="usertile38.bmp">
-                    <div class="desc">usertile36</div>
-                </div>
-                <div class="galleryItem">
-                    <img src="usertile39.bmp">
-                    <div class="desc">usertile36</div>
-                </div>
-
             </div>
         </div>
         <script type="text/javascript">
             onloadGallery();
-            firstFrame();
         </script>
 
         <!--Vorlesungen und Links-->

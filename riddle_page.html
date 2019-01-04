@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simon - Puzzles</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <style>
+        
+    </style>
+
+    <script src="/layout.js"></script>
+    <script src="/animation.js"></script>
+    <script src="/tau-prolog.js"></script>
+    <script src="/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Navigationsleiste -->
+        <div class="navbar">
+            <script>
+                $(".navbar").load("navbar.html");
+            </script>
+        </div>
+
+        <div style="background-image: url('kk.png');
+        background-size: contain; height:0px;padding-top: 46.1%; margin-bottom:0px;">
+            
+        </div>
+        <div class="riddleintro">
+            <p align="justify">
+                You arrive on a small island and after some time of confusing conversation you realize that each inhabitant is either a knight or a knave.
+                Knights are bound to the code of honour and they say nothing but the truth. Knaves however are malicious and every sentence the say is a lie.
+                Unfortunately their appearence allows no conclusion about their nature.
+                When you wander around the island you meet small groups of locals. Can you find out what they are?
+            </p>
+        </div>
+
+        <!-- Rätzel -->
+        <div class="riddlebox">
+            <p class="riddletext" align="justify">
+                After a group of Knights and Knaves set up their tents, Thomas (the best cook among them) started
+                cooking at the campfire while all the others settle in a circle around the fire,
+                watching him.
+                He noticed that everyone in the circle seemed to know the two people next to him.
+                Thomas did not know anyone except his good friend Richard.
+                To get to know the round a little more he asked a person in the circle, "You and the two,
+                who sit next to you: is there an odd number of knaves in this small set?"
+                The person answered. Thomas asked another randomly chosen person and received the same
+                answer. Whoever he asked, he kept getting this answer. Finally, after he had
+                asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
+                Thomas paused for a moment and then asked Richard, "Are you sitting between two knights?", whereupon
+                Richard replied his answer.
+            </p>
+            <p>
+                Let <em>n</em> be the number of people present. How many are Knights resp. Knaves, and
+                what are Thomas and Richard?
+            </p>
+            <p style="font-size: small; color:gray;">
+                (Author: Nick Reed, Southampton, England.)
+            </p>
+        </div>
+
+
+        <div class="riddlebox">
+            <p class = "riddletext"align="justify">
+                All 3 say: <q>At least one of the others would call me a knave.</q>
+            </p>
+        </div>
+
+        <div class="riddlebox">
+            <p class="riddletext" align="justify">
+                A claims about B: <q>He said that exactly one of us is a knight</q>, whereupon B claims the same about C.
+            </p>
+        </div>
+
+        <div class="riddlebox">
+            <p class = "riddletext" align="justify">
+                A claims: <q>B said that exactly one of us is a knight</q>, then C added: <q>Yesterday he said the same about me.</q>
+            </p>
+        </div>
+
+        <div class="riddlebox">
+            <p class="riddletext" align="justify">
+                A says: <q>If I said that B calls C a knave, I were not better than C.</q>
+            </p>
+        </div>
+       
+    </div>
+    <footer id="footer">
+        <ul>
+
+        </ul>
+    </footer>
+</body>
+</html>

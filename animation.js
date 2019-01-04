@@ -242,7 +242,9 @@ function loadplcode()
 function firstFrame()
 {
     frame();
+}
 
+function firstPLFrame() {
     initTowers();
     plframe();
 }

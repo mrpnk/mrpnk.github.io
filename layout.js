@@ -21,6 +21,15 @@ function layoutGallery()
     var a = container.offsetWidth;
     var b = getAbsoluteWidth(container.children[0]);
 
+    if (a / b < 2) {
+        for (var i = 0; i < container.children.length; i++) {
+            console.log("rescale");
+            container.children[i].style.color = "blue";
+            //container.children[i].style.width = "200px";
+            b = getAbsoluteWidth(container.children[0]);
+        }
+    }
+
     var COL_COUNT = Math.floor(a / b);
     var col_heights = [];
 
