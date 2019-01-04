@@ -2,9 +2,10 @@
 <html>
 <head>
     <title>Simon - Puzzles</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" media='screen'>
+    <!--<link rel="stylesheet" type="text/css" media='screen and (max-width: 400px)' href='/mobile.css' />-->
+    
     <style>
-        
     </style>
 
     <script src="/layout.js"></script>
@@ -14,17 +15,17 @@
 </head>
 
 <body>
+    <!-- Navigationsleiste -->
+    <div class="navbar">
+        <script>
+            $(".navbar").load("navbar.html");
+        </script>
+    </div>
     <div id="wrapper">
-        <!-- Navigationsleiste -->
-        <div class="navbar">
-            <script>
-                $(".navbar").load("navbar.html");
-            </script>
-        </div>
 
         <div style="background-image: url('kk.png');
         background-size: contain; height:0px;padding-top: 46.1%; margin-bottom:0px;">
-            
+
         </div>
         <div class="riddleintro">
             <p align="justify">
@@ -62,7 +63,7 @@
 
 
         <div class="riddlebox">
-            <p class = "riddletext"align="justify">
+            <p class="riddletext" align="justify">
                 All 3 say: <q>At least one of the others would call me a knave.</q>
             </p>
         </div>
@@ -74,7 +75,7 @@
         </div>
 
         <div class="riddlebox">
-            <p class = "riddletext" align="justify">
+            <p class="riddletext" align="justify">
                 A claims: <q>B said that exactly one of us is a knight</q>, then C added: <q>Yesterday he said the same about me.</q>
             </p>
         </div>
@@ -84,12 +85,10 @@
                 A says: <q>If I said that B calls C a knave, I were not better than C.</q>
             </p>
         </div>
-       
+
     </div>
     <footer id="footer">
-        <ul>
-
-        </ul>
+        <ul></ul>
     </footer>
 </body>
 </html>
