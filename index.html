@@ -3,14 +3,20 @@
 <head>
     <title>Simon</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <style>
 
-    </style>
+
 
     <script src="/layout.js"></script>
     <script src="/animation.js"></script>
     <script src="/tau-prolog.js"></script>
     <script src="/jquery-3.3.1.js"></script>
+
+    <script>
+        $(function () {
+            // Handler for .ready() called.
+            onloadGallery();
+        });
+    </script>
 </head>
 
 <body>
@@ -106,9 +112,6 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            onloadGallery();
-        </script>
 
         <!--Vorlesungen und Links-->
         <div class="container">
