@@ -35,7 +35,7 @@
         </div>
         <div class="riddleintro">
             <p align="justify">
-                You arrive on a small island and after some time of confusing conversation you realize that each inhabitant is either a knight or a knave.
+                You arrive on a small island and after some time of confusing conversation you realize that each inhabitant is either a Knight or a Knave.
                 Knights are bound to the code of honour and they say nothing but the truth. Knaves however are malicious and every sentence the say is a lie.
                 Unfortunately their appearence allows no conclusion about their nature.
                 When you wander around the island you meet small groups of locals. Can you find out what they are?
@@ -44,96 +44,140 @@
 
         <!-- Rätzel -->
         <div class="riddlebox">
-            <p class="riddletext" align="justify">
-                All 3 say: <q>At least one of the others would call me a knave.</q>
-            </p>
-            <details>
-                <summary>Solution</summary>
-                <pre><code class="prolog">?- sat(A=:=(B=:= ~A)+(C=:= ~A)), sat(B=:=(A=:= ~B)+(C=:= ~B)), sat(C=:=(A=:= ~C)+(B=:= ~C)).</code></pre>
-            </details>
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    All 3 say: &raquo; At least one of the others would call me a knave. &laquo;
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">?- sat(A=:=(B=:= ~A)+(C=:= ~A)), sat(B=:=(A=:= ~B)+(C=:= ~B)), sat(C=:=(A=:= ~C)+(B=:= ~C)).</code></pre>
+                </details>
+            </div>
         </div>
 
         <div class="riddlebox">
-            <p class="riddletext" align="justify">
-                A claims about B: <q>He said that exactly one of us is a knight</q>, whereupon B claims the same about C.
-            </p>
-            <details>
-                <summary>Solution</summary>
-                <pre><code class="prolog">?- sat(A=:=(B=:=card([1],[A,B,C]))),sat(B=:=(C=:=card([1],[A,B,C]))).</code></pre>
-            </details>
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    A claims about B: &raquo;He said that exactly one of us is a knight&laquo;, whereupon B claims the same about C.
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">?- sat(A=:=(B=:=card([1],[A,B,C]))),sat(B=:=(C=:=card([1],[A,B,C]))).</code></pre>
+                </details>
+            </div>
         </div>
 
         <div class="riddlebox">
-            <p class="riddletext" align="justify">
-                A claims: <q>B said that exactly one of us is a knight</q>, then C added: <q>Yesterday he said the same about me.</q>
-            </p>
-            <details>
-                <summary>Solution</summary>
-                <pre><code class="prolog">?- sat(A=:=(B=:=card([1],[A,B,C]))),sat(C=:=(A=:=(C=:=card([1],[A,B,C])))).</code></pre>
-            </details>
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    A claims: &raquo;B said that exactly one of us is a knight&laquo;, then C added: &raquo;Yesterday he said the same about me.&laquo;
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">?- sat(A=:=(B=:=card([1],[A,B,C]))),sat(C=:=(A=:=(C=:=card([1],[A,B,C])))).</code></pre>
+                </details>
+            </div>
         </div>
 
         <div class="riddlebox">
-            <p class="riddletext" align="justify">
-                A says: <q>If I said that B calls C a knave, I were not better than C.</q>
-            </p>
-            <details>
-                <summary>Solution</summary>
-                <pre><code class="prolog">?- sat(A=:=(~(A=:=(B=:= ~C))+(A=&lt;C))). </code></pre>
-            </details>
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    A says: &raquo;If I said that B calls C a knave, I were not better than C.&laquo;
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">?- sat(A=:=(~(A=:=(B=:= ~C))+(A=&lt;C))). </code></pre>
+                </details>
+            </div>
         </div>
 
         <div class="riddlebox">
-            <p class="riddletext" align="justify">
-                There are N inhabitants standing in a line. Everyone, except the two at the ends, says: <q>Exactly one of my two neighbours would call me a knage.</q>
-                You understand that 'knage' is part of the local dialect and means 'knight' or 'knave'.
-                How many solutions are there for a given N?
-            </p>
-            <details>
-                <summary>Solution</summary>
-                <pre><code class="prolog">con(X,Y,Z):- sat(Y=:=((X=:= Y)#(Z=:= Y))). % or use ~Y
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    There are N inhabitants standing in a line. Everyone, except the two at the ends, says: &raquo;Exactly one of my two neighbours would call me a knage.&laquo;
+                    <br>You understand that 'knage' is part of the local dialect and could mean 'knight' or 'knave', but you dont know which of both.
+                    How many solutions are there for a given <em>n</em> ?
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">con(X,Y,Z):- sat(Y=:=((X=:= Y)#(Z=:= Y))). % or use ~Y
 nc([L,M]) --> [L,M].
 nc([L,M]) --> [L], {con(L,M,RR)}, nc([M,RR]).
 ?- phrase(nc([_,_]),P), labeling(P).</code></pre>
-            </details>
+                </details>
+            </div>
         </div>
 
         <div class="riddlebox">
-            <p class="riddletext" align="justify">
-                After a group of Knights and Knaves set up their tents, Thomas (the best cook among them) started
-                cooking at the campfire while all the others settle in a circle around the fire,
-                watching him.
-                He noticed that everyone in the circle seemed to know the two people next to him.
-                Thomas did not know anyone except his good friend Richard.
-                To get to know the round a little more he asked a person in the circle, "You and the two,
-                who sit next to you: is there an odd number of knaves in this small set?"
-                The person answered. Thomas asked another randomly chosen person and received the same
-                answer. Whoever he asked, he kept getting this answer. Finally, after he had
-                asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
-                Thomas paused for a moment and then asked Richard, "Are you sitting between two knights?", whereupon
-                Richard replied his answer. Thomas concluded "Then there are more knaves present than knights."
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    After a group of knights and knaves set up their tents, Thomas (the best cook among them) started
+                    cooking at the campfire while all the others settle in a circle around the fire,
+                    watching him.
+                    He noticed that everyone in the circle seemed to know the two people next to him.
+                    Thomas did not know anyone except his good friend Richard.
+                    To get to know the round a little more he asked a person in the circle, "You and the two,
+                    who sit next to you: is there an odd number of knaves in this small set?"
+                    The person answered. Thomas asked another randomly chosen person and received the same
+                    answer. Whoever he asked, he kept getting this answer. Finally, after he had
+                    asked everybody else, he turned the same question to Richard. Surprisingly his answer was different from all the others.
+                    Thomas paused for a moment and then asked Richard, &raquo;Are you sitting between two knights?&laquo;, whereupon
+                    Richard replied his answer. Thomas concluded &raquo;Then there are more knaves present than knights.&laquo;
 
-                Let <em>n</em> be the number of people present. How many are Knights resp. Knaves, and
-                what are Thomas and Richard?
-            </p>
-            <p style="font-size: small; color:gray;">
-                (Author: Nick Reed, Southampton, England.)
-            </p>
-            <details>
-                <summary>Solution</summary>
-                <pre><code class="prolog">con(X,Y,Z,A):- sat(Y=:=(A=:=card([1,3],[~X,~Y,~Z]))).
+                    Let <em>n</em> be the number of people present. How many are Knights resp. Knaves, and
+                    what are Thomas and Richard?
+                    <br>
+                    <span style="display: block; font-size: small; color:gray; text-align: right;">
+                        (Author: Nick Reed)
+                    </span>
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">con(X,Y,Z,A):- sat(Y=:=(A=:=card([1,3],[~X,~Y,~Z]))).
 conx(X,Y,Z,A):- sat(Y=:=(~ A=:=card([1,3],[~X,~Y,~Z]))), sat(Y=:= (~ A=:=(X*Z))).
 nc([LL,L],[LL,L],_) --> [LL,L].
 nc([LL,L],[R,RR],A) --> [LL], {con(LL,L,M,A)}, nc([L,M],[R,RR],A).
 np(A) --> nc([LL,L],[R,RR],A), {conx(RR,LL,L,A), con(R,RR,LL,A)}.
 ?- [riddle], length(K,6),  phrase(np(A),[R|K]), sat(T=:=(R* ~T)), labeling([R|K]).
 </code></pre>
-            </details>
+                </details>
+            </div>
+        </div>
+
+        <div class="riddleintro">
+            <p align="justify">
+                On a narrow path you meet a knight who tells you that the part of the island ahead of you has a special feature: There is a third species of people, the Spies. They are not committed to care about the validity of a sentence at all. What they say can be either right or wrong.
+            </p>
+        </div>
+
+        <div class="riddlebox">
+            <div class="riddlecontent">
+                <p class="riddletext">
+                    A: &raquo;Both of the others are knaves.&laquo;<br>
+                    B: &raquo;Exactly one of the others is a knave.&laquo;<br>
+                    C: &raquo;The others are no knaves.&laquo;<br>
+                    A: &raquo;There is an even number of spies among us.&laquo;<br>
+                    B: &raquo;There is at least one spy among us.&laquo;<br>
+                    C: &raquo;There is at most one spy among us.&laquo;<br>
+                </p>
+                <details>
+                    <summary>Solution</summary>
+                    <pre><code class="prolog">kks([A1,A0],[B1,B0],[C1,C0]):- sat(~A1+A0),sat(~B1+B0),sat(~C1+C0),
+                               sat(A1+(A0=:=(~B1* ~B0)*(~C1* ~C0))),
+                               sat(B1+(B0=:=(~A1* ~A0)#(~C1* ~C0))),
+                               sat(C1+(C0=:=(A1+A0)*(B1+B0))),
+                               sat(A1+(A0=:=card([0,2],[A1,B1,C1]))),
+                               sat(B1+(B0=:=card([1,2],[A1,B1,C1]))),
+                               sat(C1+(C0=:=card([0,1],[A1,B1,C1]))),
+                               sat(~card([3],[A1,B1,C1])).
+?- kks(A,B,C).</code></pre>
+                </details>
+            </div>
         </div>
 
     </div>
-    <footer id="footer">
-        <ul></ul>
-    </footer>
+<footer id="footer">
+    <ul></ul>
+</footer>
 </body>
 </html>

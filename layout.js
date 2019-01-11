@@ -17,6 +17,7 @@ function getAbsoluteWidth(el) {
 
 function layoutGallery()
 {
+    console.log("layoutGallery()");
     var container = document.getElementById('gallery');
     var a = container.offsetWidth;
     var b = getAbsoluteWidth(container.children[0]);
@@ -48,8 +49,9 @@ const myObserver = new ResizeObserver(layoutGallery);
 
 function onloadGallery()
 {
-    console.log("orderGallery");
+    layoutGallery();
     
     myObserver.observe(document.getElementById('gallery'));
+    console.log("resize event for gallery registered");
 }
 
